@@ -7,6 +7,7 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
+import Recipes from "../Recipe/Recipes";
 
 const { Header, Sider, Content } = Layout;
 
@@ -56,7 +57,7 @@ class SiderDemo extends React.Component {
               minHeight: 280,
             }}
           >
-            Content
+            <Recipes />
           </Content>
         </Layout>
       </Layout>
