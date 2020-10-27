@@ -1,0 +1,12 @@
+{
+    "routes":[
+        {
+            "src": "/api",
+            "methods": [
+                "POST",
+                "GET"
+            ],
+            "dest": "/recipes.js"
+        }
+    ]
+}
