@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import { getAllRecipes } from "../../services/RecipeService";
 import { Row, Col } from "antd";
 import styled from "styled-components";
-import { Card, Avatar } from "antd";
+import { Card, Spin } from "antd";
 import {
   EditOutlined,
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-
 const { Meta } = Card;
 
 const useFetch = () => {
@@ -34,13 +33,12 @@ const useFetch = () => {
 const Recipe = () => {
   const { data, loading } = useFetch();
 
-  console.log(data);
-  // const { recipe_name } = data.recipes;
-
   return (
     <div className="App">
       {loading ? (
-        <div>Loading...</div>
+        <div>
+          <Spin />
+        </div>
       ) : (
         <>
           <Wrapper>
