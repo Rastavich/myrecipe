@@ -1,103 +1,84 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import { getAllRecipes } from "../../services/RecipeService";
+import { Row, Col } from "antd";
+import styled from "styled-components";
+import { Card, Avatar } from "antd";
 import {
-  getAllRecipes,
-  deleteRecipeByName,
-  getRecipeByName,
-} from "../../services/RecipeService";
-import { Card, Col, Row } from "antd";
+  EditOutlined,
+  EllipsisOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 
-export default class Recipes extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { recipes: [], recipes_storage: [] };
-  }
+const { Meta } = Card;
 
-  componentDidMount() {
-    getAllRecipes();
-  }
+const useFetch = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  deleteRecipe(name) {
-    deleteRecipeByName(name)
-      .then(() => {})
-      .catch((error) => {});
-  }
-
-  searchRecipes(name) {
-    getRecipeByName(name).then((response) => {
-      this.recipes = response;
-    });
-  }
-
-  getSteps(recipe) {
-    const allSteps = Object.keys(recipe.steps).map(function (key) {
-      return recipe.steps[key];
-    });
-    this.recipe_steps = allSteps;
-  }
-
-  getRecipeDetails(recipe) {
-    var recipeByName = {
-      recipes: [],
-    };
-    recipeByName.recipes.push(recipe);
-    this.recipes = recipeByName;
-    this.getIngredients(recipe);
-    this.getSteps(recipe);
-    this.detail_view = true;
-  }
-
-  getIngredients(recipe) {
-    const allIngredients = Object.keys(recipe.ingredients).map(function (key) {
-      return recipe.ingredients[key];
-    });
-    this.recipe_ingredients = allIngredients;
-  }
-
-  backBtn() {
-    this.recipes = this.recipes_storage;
-    this.detail_view = false;
-  }
-
-  clearSearch() {
-    if (this.search_name != "") {
-      this.getAllRecipes();
-      this.search_name = "";
-    }
-  }
-
-  getAllRecipes() {
+  const getRecipes = () => {
     getAllRecipes().then((response) => {
-      this.data = response;
-      console.log(this.data);
-      this.setState({ recipes_storage: this.data });
-      this.setState({ recipes: this.data });
-      this.recipe_steps = "";
-      this.detail_view = false;
+      const data = response;
+      const recipe = data;
+      setData(recipe);
+      setLoading(false);
     });
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        <h1>Hello, {this.state.data}</h1>
-        <div className="site-card-wrapper">
-          <Row gutter={16}>
-            <Col span={8}>
-              {this.state.recipes.map((recipe) => (
-                <Card
-                  key="recipes.toString()"
-                  title="Card title"
-                  bordered={false}
-                >
-                  {console.log(this.state.recipes)}
-                  {recipe.name}
-                </Card>
+  useEffect(() => {
+    getRecipes();
+  }, []);
+
+  return { data, loading };
+};
+
+const Recipe = () => {
+  const { data, loading } = useFetch();
+
+  console.log(data);
+  // const { recipe_name } = data.recipes;
+
+  return (
+    <div className="App">
+      {loading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          <Wrapper>
+            <Row gutter={[16, 16]}>
+              {data.recipes.map((recipe) => (
+                <Col span={6}>
+                  <Card
+                    style={{ width: 260 }}
+                    cover={
+                      <img
+                        alt="example"
+                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                      />
+                    }
+                    actions={[
+                      <SettingOutlined key="setting" />,
+                      <EditOutlined key="edit" />,
+                      <EllipsisOutlined key="ellipsis" />,
+                    ]}
+                  >
+                    <Meta
+                      title={recipe.recipe_name}
+                      description={recipe.recipe_intro}
+                    />
+                  </Card>
+                </Col>
               ))}
-            </Col>
-          </Row>
-        </div>
-        ,
-      </div>
-    );
-  }
-}
+            </Row>
+          </Wrapper>
+        </>
+      )}
+    </div>
+  );
+};
+
+const Wrapper = styled.section`
+  margin: 0 auto;
+  width: 100em;
+`;
+
+export default Recipe;
