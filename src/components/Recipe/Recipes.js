@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllRecipes } from "../../services/RecipeService";
-import { Row, Col } from "antd";
 import styled from "styled-components";
-import { Card, Spin } from "antd";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-const { Meta } = Card;
+import { Spin } from "antd";
 
 const useFetch = () => {
   const [data, setData] = useState(null);
@@ -41,42 +34,55 @@ const Recipe = () => {
         </div>
       ) : (
         <>
-          <Wrapper>
-            <Row gutter={[16, 16]}>
-              {data.recipes.map((recipe) => (
-                <Col span={6}>
-                  <Card
-                    style={{ width: 260 }}
-                    cover={
-                      <img
-                        alt="example"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
-                      />
-                    }
-                    actions={[
-                      <SettingOutlined key="setting" />,
-                      <EditOutlined key="edit" />,
-                      <EllipsisOutlined key="ellipsis" />,
-                    ]}
-                  >
-                    <Meta
-                      title={recipe.recipe_name}
-                      description={recipe.recipe_intro}
-                    />
-                  </Card>
-                </Col>
-              ))}
-            </Row>
-          </Wrapper>
+          <Row gutter={[16, 16]}>
+            {data.recipes.map((recipe) => (
+              <Column>
+                <CardWrapper>
+                  <CardImage
+                    alt="example"
+                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                  />
+                  <CardTitle>{recipe.recipe_name}</CardTitle>
+                  <CardDescription>{recipe.recipe_intro}</CardDescription>
+                </CardWrapper>
+              </Column>
+            ))}
+          </Row>
         </>
       )}
     </div>
   );
 };
 
-const Wrapper = styled.section`
-  margin: 0 auto;
-  width: 100em;
+const CardWrapper = styled.div`
+  width: 270px;
+  flex-direction: row;
+  border: 1px;
+  border-color: black;
+  border-style: solid;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 200px;
+  }
 `;
+
+const CardTitle = styled.h1``;
+
+const CardDescription = styled.p``;
+
+const Column = styled.div`
+  display: inline-flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  width: fit-content;
+  padding: 2px;
+`;
+
+const CardImage = styled.img`
+  max-width: -webkit-fill-available;
+`;
+
+const Row = styled.div``;
 
 export default Recipe;

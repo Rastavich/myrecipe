@@ -40,7 +40,10 @@ class SiderDemo extends React.Component {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
+          <Header
+            className="site-layout-background"
+            style={{ padding: 0, left: 0 }}
+          >
             {React.createElement(
               this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
               {
@@ -52,9 +55,10 @@ class SiderDemo extends React.Component {
           <Content
             className="site-layout-background"
             style={{
-              margin: "24px 16px",
-              padding: 24,
+              margin: "24px 20px",
+              padding: 38,
               minHeight: 280,
+              maxWidth: 900,
             }}
           >
             <Recipe />
