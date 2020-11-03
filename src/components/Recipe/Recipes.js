@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllRecipes } from "../../services/RecipeService";
 import styled from "styled-components";
-import { Spin } from "antd";
+import { TraceSpinner } from "react-spinners-kit";
 
 const useFetch = () => {
   const [data, setData] = useState(null);
@@ -29,9 +29,9 @@ const Recipe = () => {
   return (
     <div className="App">
       {loading ? (
-        <div>
-          <Spin />
-        </div>
+        <Column>
+          <TraceSpinner size={30} color="#686769" />
+        </Column>
       ) : (
         <>
           <Row gutter={[16, 16]}>
@@ -60,7 +60,8 @@ const CardWrapper = styled.div`
   border: 1px;
   border-color: black;
   border-style: solid;
-
+  border-radius: 5px;
+  height: 300px;
   @media (max-width: 768px) {
     flex-direction: column;
     width: 200px;

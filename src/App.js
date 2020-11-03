@@ -1,5 +1,5 @@
 import "./App.css";
-import { Button } from "antd";
+
 import Dashboard from "./components/Layout/Dashboard";
 import Header from "./components/Layout/Header";
 
@@ -11,7 +11,6 @@ function App() {
       </header>
       <body>
         <Dashboard />
-        {/* <Button type="primary">Button</Button> */}
       </body>
     </div>
   );
