@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllRecipes } from "../../services/RecipeService";
 import styled from "styled-components";
-import { TraceSpinner } from "react-spinners-kit";
+import { ClapSpinner } from "react-spinners-kit";
 
 const useFetch = () => {
   const [data, setData] = useState(null);
@@ -30,7 +30,7 @@ const Recipe = () => {
     <div className="App">
       {loading ? (
         <Column>
-          <TraceSpinner size={30} color="#686769" />
+          <ClapSpinner size={30} color="#686769" />
         </Column>
       ) : (
         <>

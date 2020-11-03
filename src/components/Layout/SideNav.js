@@ -25,7 +25,9 @@ const SideNav = () => {
             <CreateRecipe />
           </Route>
           <Route path="/">
-            <Recipes />
+            <FlexGrid>
+              <Recipes />
+            </FlexGrid>
           </Route>
         </Switch>
       </Wrapper>
@@ -59,4 +61,12 @@ const Ul = styled.ul`
   border-bottom: 1px solid $color-d;
 `;
 
+const FlexGrid = styled.div`
+  display: flex;
+  flex: 1;
+  margin: 0 20px 20px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  background: #fff;
+`;
 export default SideNav;
