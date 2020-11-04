@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { getAllRecipes } from "../../services/RecipeService";
-import styled from "styled-components";
 import { ClapSpinner } from "react-spinners-kit";
+import {
+  Column,
+  CardWrapper,
+  Row,
+  CardImage,
+  CardTitle,
+  CardDescription,
+} from "./Recipes.elements";
 
 const useFetch = () => {
   const [data, setData] = useState(null);
@@ -53,37 +60,5 @@ const Recipe = () => {
     </div>
   );
 };
-
-const CardWrapper = styled.div`
-  width: 270px;
-  flex-direction: row;
-  border: 1px;
-  border-color: black;
-  border-style: solid;
-  border-radius: 5px;
-  height: 300px;
-  @media (max-width: 768px) {
-    flex-direction: column;
-    width: 200px;
-  }
-`;
-
-const CardTitle = styled.h1``;
-
-const CardDescription = styled.p``;
-
-const Column = styled.div`
-  display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  width: fit-content;
-  padding: 2px;
-`;
-
-const CardImage = styled.img`
-  max-width: -webkit-fill-available;
-`;
-
-const Row = styled.div``;
 
 export default Recipe;

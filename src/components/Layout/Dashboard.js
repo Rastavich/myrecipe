@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Navigation from "./SideNav";
+import Navigation from "../NavBar/SideNav";
 
 const Dashboard = () => {
   return <Navigation />;
