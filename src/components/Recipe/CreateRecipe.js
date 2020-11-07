@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { createRecipe } from "../../services/RecipeService";
 import { ClapSpinner } from "react-spinners-kit";
 import {} from "./CreateRecipe.elements";

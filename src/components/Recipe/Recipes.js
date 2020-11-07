@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   getAllRecipes,
   deleteRecipeByName,
@@ -11,7 +11,10 @@ import {
   CardImage,
   CardTitle,
   CardDescription,
+  CardContent,
 } from "./Recipes.elements";
+import Button from "../Generics/Button";
+import { HiOutlineHashtag } from "react-icons/hi";
 
 const useFetch = () => {
   const [data, setData] = useState(null);
@@ -52,8 +55,20 @@ const Recipe = () => {
                     alt="example"
                     src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
                   />
-                  <CardTitle>{recipe.recipe_name}</CardTitle>
-                  <CardDescription>{recipe.recipe_intro}</CardDescription>
+                  <CardContent>
+                    <CardTitle inline="inline-flex">
+                      {recipe.recipe_name}
+                    </CardTitle>
+                    <CardDescription inline="">
+                      <HiOutlineHashtag />
+                      {recipe.category_name}
+                    </CardDescription>
+                    <CardDescription>
+                      Prep time: {recipe.prep_time}
+                    </CardDescription>
+                    <Button data={recipe} name="View"></Button>
+                    <Button data={recipe} name="Delete"></Button>
+                  </CardContent>
                 </CardWrapper>
               </Column>
             ))}

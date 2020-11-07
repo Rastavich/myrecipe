@@ -1,8 +1,14 @@
-import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Recipe from "../Recipe/Recipes";
 import CreateRecipe from "../Recipe/CreateRecipe";
-import { Wrapper, Layout, Ul, FlexGrid, MenuItem } from "./SideNav.elements";
+import {
+  Wrapper,
+  Layout,
+  Ul,
+  FlexGrid,
+  MenuItem,
+  Li,
+} from "./SideNav.elements";
 
 const SideNav = () => {
   return (
@@ -10,16 +16,16 @@ const SideNav = () => {
       <Wrapper>
         <Layout>
           <Ul>
-            <li>
+            <Li>
               <Link to="/">
                 <MenuItem>Home</MenuItem>
               </Link>
-            </li>
-            <li>
+            </Li>
+            <Li>
               <Link to="/CreateRecipe">
                 <MenuItem>Create Recipe</MenuItem>
               </Link>
-            </li>
+            </Li>
           </Ul>
         </Layout>
 

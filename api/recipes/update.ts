@@ -1,3 +1,5 @@
+/* eslint-disable import/no-anonymous-default-export */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NowRequest, NowResponse } from "@vercel/node";
 import { connectToDatabase } from '../../lib/database';
 

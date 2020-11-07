@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import { NowRequest, NowResponse } from "@vercel/node";
 import { connectToDatabase } from '../../lib/database';
 

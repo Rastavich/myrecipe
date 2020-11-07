@@ -6,8 +6,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Layout = styled.nav`
-  width: 5%;
-  background: ${(props) => props.backgroundColor || "#4A3CBA"};
+  width: 10em;
+  background: ${(props) => props.backgroundColor || "#264653"};
 `;
 
 export const Ul = styled.ul`
@@ -33,4 +33,8 @@ export const MenuItem = styled.p`
   &:hover {
     color: ${(props) => props.hoverColor || "#ACBA3C"};
   }
+`;
+
+export const Li = styled.li`
+  text-align: center;
 `;
