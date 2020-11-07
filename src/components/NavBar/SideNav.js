@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Recipe from "../Recipe/Recipes";
-import { Wrapper, Layout, Ul, FlexGrid } from "./SideNav.elements";
+import CreateRecipe from "../Recipe/CreateRecipe";
+import { Wrapper, Layout, Ul, FlexGrid, MenuItem } from "./SideNav.elements";
 
 const SideNav = () => {
   return (
@@ -10,10 +11,14 @@ const SideNav = () => {
         <Layout>
           <Ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">
+                <MenuItem>Home</MenuItem>
+              </Link>
             </li>
             <li>
-              <Link to="/CreateRecipe">Create Recipe</Link>
+              <Link to="/CreateRecipe">
+                <MenuItem>Create Recipe</MenuItem>
+              </Link>
             </li>
           </Ul>
         </Layout>
@@ -22,7 +27,7 @@ const SideNav = () => {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/createRecipe">
-            <CreateRecipe />
+            <Create />
           </Route>
           <Route path="/">
             <FlexGrid>
@@ -39,8 +44,8 @@ function Recipes() {
   return <Recipe />;
 }
 
-function CreateRecipe() {
-  return <h2>Create Recipe</h2>;
+function Create() {
+  return <CreateRecipe />;
 }
 
 export default SideNav;
