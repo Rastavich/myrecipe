@@ -1,49 +1,125 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import { createRecipe } from "../../services/RecipeService";
 import { ClapSpinner } from "react-spinners-kit";
 import {} from "./CreateRecipe.elements";
 import { useForm } from "react-hook-form";
+import ListForm from "../Form/ListForm";
 
 export default function CreateRecipe() {
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data) => {
+
+  const onRecipeSubmit = (data) => {
+    console.log(data);
+    console.log(watch("example"));
     createRecipe(data)
       .then((response) => {
-        this.success = response;
+        console.log(response);
       })
       .catch((error) => {
-        this.error = error.status;
+        console.log(error);
       })
       .finally(() => {});
   };
 
-  console.log(watch("example")); // watch input value by passing the name of it
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onRecipeSubmit)}>
       <input
-        name="recipeName"
+        name="recipe_name"
         placeholder="Recipe Name"
         ref={register({ required: true, maxLength: 20 })}
       />
-      {errors.recipeName && <span>This field is required</span>}
+      {errors.recipe_name && <span>This field is required</span>}
       <input
-        name="categoryName"
+        name="category_name"
         placeholder="Category Name"
         ref={register({ maxLength: 20 })}
       />
       <input
-        name="recipeIntro"
+        name="recipe_intro"
         placeholder="Recipe Intro"
         ref={register({ maxLength: 50 })}
       />
       <input
-        name="prepTime"
+        name="prep_time"
         placeholder="Preparation Time"
+        ref={register({ maxLength: 10 })}
+      />
+      <input
+        name="total_time"
+        placeholder="Total Time"
         ref={register({ required: true, maxLength: 10 })}
       />
-      {errors.prepTime && <span>This field is required</span>}
-      <input type="submit" />
+      <input
+        name="difficulty"
+        placeholder="Difficulty"
+        type="number"
+        ref={register({ maxLength: 1 })}
+      />
+
+      <div class="row">
+        <ListForm fieldName="steps" fieldVal1="stepNum" fieldVal2="stepDesc" />
+
+        <ListForm fieldName="ingredients" fieldVal1="qty" fieldVal2="name" />
+        {/* {stepIndexes.map((index) => {
+          const fieldName = `steps[${index}]`;
+          return (
+            <fieldset name={fieldName} key={fieldName}>
+              <label>
+                Step Description:
+                <input
+                  type="number"
+                  name={`${fieldName}.stepNum`}
+                  ref={register}
+                  style={{ display: "none" }}
+                  value={index + 1}
+                  readOnly
+                />
+                <input
+                  type="text"
+                  name={`${fieldName}.stepDesc`}
+                  ref={register}
+                />
+              </label>
+              <button type="button" onClick={removeStep(index)}>
+                Remove
+              </button>
+            </fieldset>
+          );
+        })} */}
+        {/* <button type="button" onClick={addStep}>
+          Add Friend
+        </button>
+        <button type="button" onClick={clearSteps}>
+          Clear Friends
+        </button> */}
+      </div>
+
+      {/* <div class="row">
+        <h1>Add ingredients</h1>
+        {ingredientIndexes.map((index) => {
+          const fieldName = `ingredients[${index}]`;
+          return (
+            <fieldset name={fieldName} key={fieldName}>
+              <label>
+                Ingredient Name:
+                <input type="text" name={`${fieldName}.name`} ref={register} />
+                <input type="text" name={`${fieldName}.qty`} ref={register} />
+              </label>
+              <button type="button" onClick={removeIngredient(index)}>
+                Remove
+              </button>
+            </fieldset>
+          );
+        })}
+        <button type="button" onClick={addIngredient}>
+          Add Ingredient
+        </button>
+        <button type="button" onClick={clearIngredient}>
+          Clear Ingredient List
+        </button>
+      </div>
+      <input type="submit" /> */}
     </form>
   );
 }
