@@ -15,6 +15,7 @@ import {
 } from "./Recipes.elements";
 import Button from "../Generics/Button";
 import { HiOutlineHashtag } from "react-icons/hi";
+import { Btn } from "../Generics/Button.elements";
 
 const useFetch = () => {
   const [data, setData] = useState(null);
@@ -38,6 +39,17 @@ const useFetch = () => {
 
 const Recipe = () => {
   const { data, loading } = useFetch();
+
+  const deleteRecipe = (name) => {
+    console.log(name);
+    deleteRecipeByName(name)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  };
 
   return (
     <div className="App">
@@ -67,7 +79,9 @@ const Recipe = () => {
                       Prep time: {recipe.prep_time}
                     </CardDescription>
                     <Button data={recipe} name="View"></Button>
-                    <Button data={recipe} name="Delete"></Button>
+                    <Btn onClick={() => deleteRecipe(recipe.recipe_name)}>
+                      Delete
+                    </Btn>
                   </CardContent>
                 </CardWrapper>
               </Column>

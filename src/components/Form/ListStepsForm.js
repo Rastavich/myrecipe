@@ -1,18 +1,8 @@
-import { render } from "@testing-library/react";
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import { useForm } from "react-hook-form";
+import React from "react";
 
-const ListForm = (props) => {
-  const { register, handleSubmit, watch, errors } = useForm();
+const ListStepsForm = ({ register }) => {
   const [indexes, setIndexes] = React.useState([]);
   const [counter, setCounter] = React.useState(0);
-
-  const [steps, setSteps] = React.useState({});
-
-  //   useEffect((e) => {
-  //     setSteps({ steps: e.target.value });
-  //   }, []);
 
   const addField = () => {
     setIndexes((prevIndexes) => [...prevIndexes, counter]);
@@ -33,17 +23,17 @@ const ListForm = (props) => {
 
   return (
     <div class="row">
-      <h1>Add {props.fieldName}</h1>
+      <h1>Add Steps</h1>
 
       {indexes.map((index) => {
-        const fieldName = `{props.fieldName}[${index}]`;
+        const fieldName = `Steps[${index}]`;
         return (
           <fieldset name={fieldName} key={fieldName}>
             <label>
-              {props.fieldName} Step Description:
+              Steps Description:
               <input
                 type="number"
-                name={`${fieldName}.{props.fieldVal1}`}
+                name={`${fieldName}.stepNum`}
                 ref={register}
                 style={{ display: "none" }}
                 value={index + 1}
@@ -51,7 +41,7 @@ const ListForm = (props) => {
               />
               <input
                 type="text"
-                name={`${fieldName}.{props.fieldVal2}`}
+                name={`${fieldName}.stepDesc`}
                 ref={register}
               />
             </label>
@@ -63,13 +53,13 @@ const ListForm = (props) => {
       })}
 
       <button type="button" onClick={addField}>
-        Add {props.fieldName}
+        Add Steps
       </button>
       <button type="button" onClick={clearField}>
-        Clear {props.fieldName}
+        Clear Steps
       </button>
     </div>
   );
 };
 
-export default ListForm;
+export default ListStepsForm;
