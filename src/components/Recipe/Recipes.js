@@ -41,10 +41,11 @@ const Recipe = () => {
   const { data, loading } = useFetch();
 
   const deleteRecipe = (name) => {
-    console.log(name);
     deleteRecipeByName(name)
       .then((response) => {
         return response;
+        // this.setData(data.filter((recipes) => recipes.recipe_name !== name));
+        // console.log({ data });
       })
       .catch((error) => {
         return error;
@@ -79,7 +80,16 @@ const Recipe = () => {
                       Prep time: {recipe.prep_time}
                     </CardDescription>
                     <Button data={recipe} name="View"></Button>
-                    <Btn onClick={() => deleteRecipe(recipe.recipe_name)}>
+                    <Btn
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you wish to delete this item?"
+                          )
+                        )
+                          deleteRecipe(recipe.recipe_name);
+                      }}
+                    >
                       Delete
                     </Btn>
                   </CardContent>

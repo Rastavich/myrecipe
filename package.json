@@ -9,6 +9,7 @@
     "@vercel/node": "^1.8.3",
     "@warpjs/engine": "^3.0.11",
     "axios": "^0.20.0",
+    "faunadb": "^3.0.1",
     "graphql": "^15.4.0",
     "mongodb": "^3.6.2",
     "react": "^17.0.1",

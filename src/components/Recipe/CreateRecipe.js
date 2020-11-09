@@ -8,15 +8,17 @@ import ListIngredientsForm from "../Form/ListIngredientsForm";
 import ListStepsForm from "../Form/ListStepsForm";
 
 export default function CreateRecipe() {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, watch, reset, errors } = useForm();
 
-  const onRecipeSubmit = (data) => {
+  const onRecipeSubmit = (data, e) => {
     console.log(data);
     // console.log(watch("example"));
     // console.log(register);
     createRecipe(data)
       .then((response) => {
         console.log(response);
+        alert("Recipe Created");
+        e.target.reset();
       })
       .catch((error) => {
         console.log(error);
