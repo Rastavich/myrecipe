@@ -39,13 +39,16 @@ const useFetch = () => {
 
 const Recipe = () => {
   const { data, loading } = useFetch();
+  // const [recipeDisplay, setRecipeDisplay] = useState({ data });
 
   const deleteRecipe = (name) => {
     deleteRecipeByName(name)
-      .then((response) => {
-        return response;
-        // this.setData(data.filter((recipes) => recipes.recipe_name !== name));
-        // console.log({ data });
+      .then(() => {
+        // return response;
+        console.log(data);
+        // console.log(recipeDisplay);
+        data.filter(data.recipes.recipe_name !== name);
+        console.log(data);
       })
       .catch((error) => {
         return error;
