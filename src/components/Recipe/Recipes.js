@@ -16,44 +16,58 @@ import {
 import Button from "../Generics/Button";
 import { HiOutlineHashtag } from "react-icons/hi";
 import { Btn } from "../Generics/Button.elements";
-
-const useFetch = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  const getRecipes = () => {
-    getAllRecipes().then((response) => {
-      const data = response;
-      const recipe = data;
-      setData(recipe);
-      setLoading(false);
-    });
-  };
-
-  useEffect(() => {
-    getRecipes();
-  }, []);
-
-  return { data, loading };
-};
+import RecipeDetails from "./RecipeDetails/RecipeDetails";
 
 const Recipe = () => {
-  const { data, loading } = useFetch();
-  // const [recipeDisplay, setRecipeDisplay] = useState({ data });
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [recipeDetails, setRecipeDetails] = useState(null);
+
+  const fetchRecipes = () => {
+    getAllRecipes()
+      .then((response) => {
+        const data = response;
+        const recipe = data;
+        setData(recipe);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setData(null);
+        setLoading(false);
+        return error;
+      });
+  };
+
+  function viewRecipe(recipe) {
+    // setShowDetails(!showDetails);
+    console.log(recipe);
+    setRecipeDetails(recipe);
+    return recipeDetails;
+  }
 
   const deleteRecipe = (name) => {
     deleteRecipeByName(name)
       .then(() => {
-        // return response;
-        console.log(data);
-        // console.log(recipeDisplay);
-        data.filter(data.recipes.recipe_name !== name);
-        console.log(data);
+        setData({
+          recipes: data.recipes.filter((item) => item.recipe_name !== name),
+        });
       })
       .catch((error) => {
         return error;
       });
   };
+
+  useEffect(() => {
+    let isMounted = false;
+
+    if (!isMounted) {
+      fetchRecipes();
+    }
+
+    return () => {
+      isMounted = true;
+    };
+  }, []);
 
   return (
     <div className="App">
@@ -65,8 +79,8 @@ const Recipe = () => {
         <>
           <Row gutter={[16, 16]}>
             {data.recipes.map((recipe) => (
-              <Column>
-                <CardWrapper>
+              <Column key={recipe.recipe_name}>
+                <CardWrapper key={recipe.recipe_name}>
                   <CardImage
                     alt="example"
                     src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
@@ -82,7 +96,15 @@ const Recipe = () => {
                     <CardDescription>
                       Prep time: {recipe.prep_time}
                     </CardDescription>
-                    <Button data={recipe} name="View"></Button>
+
+                    <Btn
+                      onClick={() => {
+                        viewRecipe(recipe);
+                      }}
+                    >
+                      {/* viewRecipe(recipe.recipe_name)} */}
+                      View
+                    </Btn>
                     <Btn
                       onClick={() => {
                         if (
@@ -100,6 +122,7 @@ const Recipe = () => {
               </Column>
             ))}
           </Row>
+          <RecipeDetails recipe={recipeDetails} />
         </>
       )}
     </div>
