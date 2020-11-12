@@ -12,12 +12,12 @@ export const CardWrapper = styled.div`
 `;
 
 export const CardContent = styled.div`
-  background: ${(props) => props.backgroundColor || "#2A9D8F"};
+  background: ${(props) => props.backgroundColor || "#E8E5DA"};
 `;
 
 export const CardTitle = styled.h1`
   font-size: 18px;
-  color: #fff;
+  color: #000;
   text-align: left;
   padding-left: 1em;
   display: ${(props) => props.inline || ""};
@@ -35,12 +35,12 @@ export const Column = styled.div`
   -ms-flex-direction: row;
   width: fit-content;
   border: 1px;
-  border-color: #e9c46a;
+  border-color: ${(props) => props.backgroundColor || "#CDC392"};
   border-style: solid;
   border-radius: 5px;
-  background: ${(props) => props.backgroundColor || "#2A9D8F"};
+  background: ${(props) => props.backgroundColor || "#E8E5DA"};
   margin: 1em;
-  color: white;
+  color: #000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   &:hover {

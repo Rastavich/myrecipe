@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 
 export const Layout = styled.nav`
   width: 10em;
-  background: ${(props) => props.backgroundColor || "#264653"};
+  background: ${(props) => props.backgroundColor || "#E8E5DA"};
 `;
 
 export const Ul = styled.ul`
@@ -29,9 +29,9 @@ export const FlexGrid = styled.div`
 `;
 
 export const MenuItem = styled.p`
-  color: ${(props) => props.backgroundColor || "#fff"};
+  color: ${(props) => props.backgroundColor || "#304C89"};
   &:hover {
-    color: ${(props) => props.hoverColor || "#ACBA3C"};
+    color: ${(props) => props.hoverColor || "#9EB7E5"};
   }
 `;
 
