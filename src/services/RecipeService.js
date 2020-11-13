@@ -11,12 +11,11 @@ export async function getRecipeById(id) {
 export async function getRecipesSteps(name) {
   const response = await fetch(`/api/recipes?name=` + name);
 
-  var recipe = await response.json();
-  var responseParsed = recipe;
+  var responseParsed = await response.json();
 
-  var test = responseParsed.recipes[0].steps;
+  var recipeSteps = responseParsed.recipes[0].steps;
 
-  return await test;
+  return await recipeSteps;
 }
 
 export async function createRecipe(data) {

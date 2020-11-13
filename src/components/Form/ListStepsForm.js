@@ -26,7 +26,7 @@ const ListStepsForm = ({ register }) => {
       <h1>Add Steps</h1>
 
       {indexes.map((index) => {
-        const fieldName = `Steps[${index}]`;
+        const fieldName = `steps[${index}]`;
         return (
           <fieldset name={fieldName} key={fieldName}>
             <label>

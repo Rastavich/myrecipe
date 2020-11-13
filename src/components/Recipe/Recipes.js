@@ -22,6 +22,7 @@ const Recipe = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [recipeDetails, setRecipeDetails] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
 
   const fetchRecipes = () => {
     getAllRecipes()
@@ -41,6 +42,7 @@ const Recipe = () => {
   function viewRecipe(recipe) {
     // setShowDetails(!showDetails);
     console.log(recipe);
+    setShowDetails(true);
     setRecipeDetails(recipe);
     return recipeDetails;
   }
@@ -122,7 +124,7 @@ const Recipe = () => {
               </Column>
             ))}
           </Row>
-          <RecipeDetails recipe={recipeDetails} />
+          {showDetails && <RecipeDetails recipe={recipeDetails} />}
         </>
       )}
     </div>
