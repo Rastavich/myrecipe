@@ -1,5 +1,5 @@
 import React from "react";
-import { DetailsView } from "./RecipeDetails.elements";
+import { DetailsView, ListView } from "./RecipeDetails.elements";
 
 const RecipeDetails = (recipe) => {
   const details = recipe.recipe;
@@ -22,17 +22,23 @@ const RecipeDetails = (recipe) => {
     <DetailsView>
       <ul>
         {steps.map((step) => (
-          <li key={step.stepNum}>
+          <ListView key={step.stepNum}>
             {step.stepNum}: {step.stepDesc}
-          </li>
+          </ListView>
         ))}
       </ul>
       <ul>
         {ingredients.map((ingredient) => (
-          <li key={ingredient.name}>
-            Name: {ingredient.name}
-            Qty: {ingredient.qty}
-          </li>
+          <ListView key={ingredient.name}>
+            <div>
+              <span>
+                <p>
+                  {ingredient.qty}&nbsp;
+                  {ingredient.name}
+                </p>
+              </span>
+            </div>
+          </ListView>
         ))}
       </ul>
     </DetailsView>
