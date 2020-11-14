@@ -21,11 +21,12 @@ export const Ul = styled.ul`
 
 export const FlexGrid = styled.div`
   display: flex;
-  flex: 1;
-  margin: 0 20px 20px 0;
+  margin: 20px 20px 20px 20px;
   padding: 15px;
   border: 1px solid #ddd;
   background: #fff;
+  height: fit-content;
+  width: fit-content;
 `;
 
 export const MenuItem = styled.p`

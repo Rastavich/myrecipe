@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const CardWrapper = styled.div`
-  width: 270px;
+  width: 250px;
   flex-direction: row;
   border: 1px;
-  height: 300px;
+  height: 250px;
   @media (max-width: 768px) {
     flex-direction: column;
     width: 200px;
@@ -34,12 +34,9 @@ export const Column = styled.div`
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   width: fit-content;
-  border: 1px;
-  border-color: ${(props) => props.backgroundColor || "#CDC392"};
-  border-style: solid;
   border-radius: 5px;
   background: ${(props) => props.backgroundColor || "#E8E5DA"};
-  margin: 1em;
+  margin: 0.5em;
   color: #000;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
