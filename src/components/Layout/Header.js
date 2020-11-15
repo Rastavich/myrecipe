@@ -1,7 +1,8 @@
 import React from "react";
+import { Head } from "./Header.elements";
 
 const Header = () => {
-  return <div className="header">Recipe App</div>;
+  return <Head>Recipe App</Head>;
 };
 
 export default Header;

@@ -14,9 +14,10 @@ export const Ul = styled.ul`
   list-style: none;
   position: relative;
   display: block;
-  padding: 15px 15px 17px 50px;
+  padding: inherit;
   color: #fff;
   border-bottom: 1px solid $color-d;
+  width: 100%;
 `;
 
 export const FlexGrid = styled.div`
@@ -29,13 +30,19 @@ export const FlexGrid = styled.div`
   width: fit-content;
 `;
 
-export const MenuItem = styled.p`
+export const MenuItem = styled.a`
   color: ${(props) => props.backgroundColor || "#304C89"};
   &:hover {
     color: ${(props) => props.hoverColor || "#9EB7E5"};
   }
+  text-align: center;
+  line-height: 42px;
 `;
 
 export const Li = styled.li`
   text-align: center;
+  width: 100%;
+  margin-top: 10px;
+  height: 3em;
+  background-color: ${(props) => props.hoverColor || "#9EB7E5"};
 `;

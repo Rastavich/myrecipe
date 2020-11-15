@@ -19,7 +19,7 @@ function App() {
     <ThemeProvider theme={{ mode: "light" }}>
       <Box className="App">
         <header className="App-header">
-          <Header />
+          <Header theme={theme} />
         </header>
         <body>
           <Dashboard />
