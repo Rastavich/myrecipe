@@ -11,8 +11,21 @@ export const CardWrapper = styled.div`
   }
 `;
 
+export const RecipeButtons = styled.div`
+  width: 250px;
+  flex-direction: row;
+  border: 1px;
+  height: 250px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 200px;
+  }
+`;
+
 export const CardContent = styled.div`
   background: ${(props) => props.backgroundColor || "#E8E5DA"};
+  display: flex;
+  flex-direction: column;
 `;
 
 export const CardTitle = styled.h1`

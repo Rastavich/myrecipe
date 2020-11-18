@@ -8,4 +8,5 @@ export const Btn = styled.button`
   border-radius: 5px;
   text-align: center;
   cursor: pointer;
+  border-style: ${(props) => props.borderStyle || "none"};
 `;

@@ -12,8 +12,8 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
+  RecipeButtons,
 } from "./Recipes.elements";
-import Button from "../Generics/Button";
 import { HiOutlineHashtag } from "react-icons/hi";
 import { Btn } from "../Generics/Button.elements";
 import RecipeDetails from "./RecipeDetails/RecipeDetails";
@@ -98,29 +98,30 @@ const Recipe = () => {
                     <CardDescription>
                       Prep time: {recipe.prep_time}
                     </CardDescription>
-
-                    <Btn
-                      onClick={() => {
-                        viewRecipe(recipe);
-                      }}
-                    >
-                      {/* viewRecipe(recipe.recipe_name)} */}
-                      View
-                    </Btn>
-                    <Btn
-                      onClick={() => {
-                        if (
-                          window.confirm(
-                            "Are you sure you wish to delete this item?"
-                          )
-                        )
-                          deleteRecipe(recipe.recipe_name);
-                      }}
-                    >
-                      Delete
-                    </Btn>
                   </CardContent>
                 </CardWrapper>
+                <RecipeButtons>
+                  <Btn
+                    onClick={() => {
+                      viewRecipe(recipe);
+                    }}
+                  >
+                    {/* viewRecipe(recipe.recipe_name)} */}
+                    View
+                  </Btn>
+                  <Btn
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Are you sure you wish to delete this item?"
+                        )
+                      )
+                        deleteRecipe(recipe.recipe_name);
+                    }}
+                  >
+                    Delete
+                  </Btn>
+                </RecipeButtons>
               </Column>
             ))}
           </Row>
