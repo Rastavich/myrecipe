@@ -17,9 +17,7 @@ const SideNav = () => {
         <Layout>
           <Ul>
             <Li>
-              <Link to="/">
-                <MenuItem>Home</MenuItem>
-              </Link>
+              <Link to="/">Home</Link>
             </Li>
             <Li>
               <Link to="/CreateRecipe">

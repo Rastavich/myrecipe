@@ -12,3 +12,7 @@ code {
 * {
   margin: 0;
 }
+
+a:-webkit-any-link {
+  text-decoration: none;
+}

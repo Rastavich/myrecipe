@@ -5,17 +5,18 @@ export const CardWrapper = styled.div`
   flex-direction: row;
   border: 1px;
   height: 250px;
+  cursor: pointer;
   @media (max-width: 768px) {
     flex-direction: column;
     width: 200px;
   }
 `;
 
-export const RecipeButtons = styled.div`
-  width: 250px;
+export const RecipeButtons = styled.span`
   flex-direction: row;
   border: 1px;
   height: 250px;
+  padding: 10px;
   @media (max-width: 768px) {
     flex-direction: column;
     width: 200px;
@@ -29,7 +30,7 @@ export const CardContent = styled.div`
 `;
 
 export const CardTitle = styled.h1`
-  font-size: 18px;
+  font-size: 15px;
   color: #000;
   text-align: left;
   padding-left: 1em;
@@ -37,7 +38,7 @@ export const CardTitle = styled.h1`
 `;
 
 export const CardDescription = styled.p`
-  font-size: 14px;
+  font-size: 13px;
   display: ${(props) => props.inline || ""};
   padding-left: 1em;
 `;

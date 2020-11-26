@@ -82,7 +82,12 @@ const Recipe = () => {
           <Row gutter={[16, 16]}>
             {data.recipes.map((recipe) => (
               <Column key={recipe.recipe_name}>
-                <CardWrapper key={recipe.recipe_name}>
+                <CardWrapper
+                  key={recipe.recipe_name}
+                  onClick={() => {
+                    viewRecipe(recipe);
+                  }}
+                >
                   <CardImage
                     alt="example"
                     src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
@@ -99,29 +104,21 @@ const Recipe = () => {
                       Prep time: {recipe.prep_time}
                     </CardDescription>
                   </CardContent>
-                </CardWrapper>
-                <RecipeButtons>
-                  <Btn
-                    onClick={() => {
-                      viewRecipe(recipe);
-                    }}
-                  >
-                    {/* viewRecipe(recipe.recipe_name)} */}
-                    View
-                  </Btn>
-                  <Btn
-                    onClick={() => {
-                      if (
-                        window.confirm(
-                          "Are you sure you wish to delete this item?"
+                  <RecipeButtons>
+                    <Btn
+                      onClick={() => {
+                        if (
+                          window.confirm(
+                            "Are you sure you wish to delete this item?"
+                          )
                         )
-                      )
-                        deleteRecipe(recipe.recipe_name);
-                    }}
-                  >
-                    Delete
-                  </Btn>
-                </RecipeButtons>
+                          deleteRecipe(recipe.recipe_name);
+                      }}
+                    >
+                      Delete
+                    </Btn>
+                  </RecipeButtons>
+                </CardWrapper>
               </Column>
             ))}
           </Row>

@@ -5,19 +5,48 @@ export const Wrapper = styled.div`
   min-height: 100vh;
 `;
 
-export const Layout = styled.nav`
-  width: 10em;
+export const Layout = styled.aside`
+  position: sticky;
+  display: block;
+  opacity: 1;
+  top: 0;
+  -webkit-box-shadow: 0 0 1px rgba(40, 51, 65, 0.1),
+    0 1px 2px rgba(40, 51, 65, 0.1), 0 1px 3px rgba(40, 51, 65, 0.1);
+  box-shadow: 0 0 1px rgba(40, 51, 65, 0.1), 0 1px 2px rgba(40, 51, 65, 0.1),
+    0 1px 3px rgba(40, 51, 65, 0.1);
+  -webkit-transition-property: none;
+  transition-property: none;
+  width: 100px;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 100vh;
+  --bg-opacity: 1;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  padding: 2rem;
+  -webkit-box-shadow: 0 3px 12px rgba(40, 51, 65, 0.1),
+    0 0 1px rgba(40, 51, 65, 0.2);
+  box-shadow: 0 3px 12px rgba(40, 51, 65, 0.1), 0 0 1px rgba(40, 51, 65, 0.2);
+  font-weight: 100;
+  z-index: 20;
+  overflow-y: auto;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
   background: ${(props) => props.backgroundColor || "#E8E5DA"};
 `;
 
 export const Ul = styled.ul`
   list-style: none;
-  position: relative;
-  display: block;
-  padding: inherit;
   color: #fff;
   border-bottom: 1px solid $color-d;
-  width: 100%;
+  padding-inline-start: 0;
+  margin-block-start: 0;
 `;
 
 export const FlexGrid = styled.div`
@@ -30,19 +59,20 @@ export const FlexGrid = styled.div`
   width: fit-content;
 `;
 
-export const MenuItem = styled.a`
+export const MenuItem = styled.p`
   color: ${(props) => props.backgroundColor || "#304C89"};
   &:hover {
-    color: ${(props) => props.hoverColor || "#9EB7E5"};
+    color: ${(props) => props.hoverColor || "#fff"};
   }
   text-align: center;
-  line-height: 42px;
+  font-size: 14px;
+  text-decoration: none;
 `;
 
 export const Li = styled.li`
   text-align: center;
-  width: 100%;
+  display: inline-flex;
   margin-top: 10px;
-  height: 3em;
+  height: 1.5em;
   background-color: ${(props) => props.hoverColor || "#9EB7E5"};
 `;

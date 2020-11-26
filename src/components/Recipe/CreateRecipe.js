@@ -27,45 +27,47 @@ export default function CreateRecipe() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onRecipeSubmit)}>
-      <input
-        name="recipe_name"
-        placeholder="Recipe Name"
-        ref={register({ required: true, maxLength: 20 })}
-      />
-      {errors.recipe_name && <span>This field is required</span>}
-      <input
-        name="category_name"
-        placeholder="Category Name"
-        ref={register({ maxLength: 20 })}
-      />
-      <input
-        name="recipe_intro"
-        placeholder="Recipe Intro"
-        ref={register({ maxLength: 50 })}
-      />
-      <input
-        name="prep_time"
-        placeholder="Preparation Time"
-        ref={register({ maxLength: 10 })}
-      />
-      <input
-        name="total_time"
-        placeholder="Total Time"
-        ref={register({ required: true, maxLength: 10 })}
-      />
-      <input
-        name="difficulty"
-        placeholder="Difficulty"
-        type="number"
-        ref={register({ maxLength: 1 })}
-      />
+    <div>
+      <form onSubmit={handleSubmit(onRecipeSubmit)}>
+        <input
+          name="recipe_name"
+          placeholder="Recipe Name"
+          ref={register({ required: true, maxLength: 20 })}
+        />
+        {errors.recipe_name && <span>This field is required</span>}
+        <input
+          name="category_name"
+          placeholder="Category Name"
+          ref={register({ maxLength: 20 })}
+        />
+        <input
+          name="recipe_intro"
+          placeholder="Recipe Intro"
+          ref={register({ maxLength: 50 })}
+        />
+        <input
+          name="prep_time"
+          placeholder="Preparation Time"
+          ref={register({ maxLength: 10 })}
+        />
+        <input
+          name="total_time"
+          placeholder="Total Time"
+          ref={register({ required: true, maxLength: 10 })}
+        />
+        <input
+          name="difficulty"
+          placeholder="Difficulty"
+          type="number"
+          ref={register({ maxLength: 1 })}
+        />
 
-      <div class="row">
-        <ListStepsForm register={register} />
-        <ListIngredientsForm register={register} />
-      </div>
-      <input type="submit" />
-    </form>
+        <div class="row">
+          <ListStepsForm register={register} />
+          <ListIngredientsForm register={register} />
+        </div>
+        <input type="submit" />
+      </form>
+    </div>
   );
 }
