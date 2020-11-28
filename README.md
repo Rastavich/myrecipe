@@ -68,3 +68,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### HELPFUL SCRIPT FOR GETTING RECIPE INGREDIENTS ETC FROM MOST SITES
+
+curl https://www.allrecipes.com/recipe/275397/penang-pork-satay/ | grep -A 20 "recipeIngredient" | grep -B1005 "]"
