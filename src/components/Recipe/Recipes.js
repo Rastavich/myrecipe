@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import {
   getAllRecipes,
   deleteRecipeByName,
+  // importRecipe,
 } from "../../services/RecipeService";
 import { ClapSpinner } from "react-spinners-kit";
 import {
@@ -58,6 +59,10 @@ const Recipe = () => {
         return error;
       });
   };
+
+  // const impRecipe = (url) => {
+  //   importRecipe("test");
+  // };
 
   useEffect(() => {
     let isMounted = false;
@@ -122,6 +127,13 @@ const Recipe = () => {
               </Column>
             ))}
           </Row>
+          {/* <Btn
+            onClick={() => {
+              impRecipe();
+            }}
+          >
+            Import
+          </Btn> */}
           {showDetails && <RecipeDetails recipe={recipeDetails} />}
         </>
       )}

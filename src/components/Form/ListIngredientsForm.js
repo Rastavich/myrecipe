@@ -22,7 +22,7 @@ const ListIngredientsForm = ({ register }) => {
   };
 
   return (
-    <div class="row">
+    <div>
       <h1>Add Ingredients</h1>
 
       {indexes.map((index) => {

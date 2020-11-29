@@ -22,7 +22,7 @@ const ListStepsForm = ({ register }) => {
   };
 
   return (
-    <div class="row">
+    <div>
       <h1>Add Steps</h1>
 
       {indexes.map((index) => {

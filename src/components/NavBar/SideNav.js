@@ -1,14 +1,7 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Recipe from "../Recipe/Recipes";
 import CreateRecipe from "../Recipe/CreateRecipe";
-import {
-  Wrapper,
-  Layout,
-  Ul,
-  FlexGrid,
-  MenuItem,
-  Li,
-} from "./SideNav.elements";
+import { Wrapper, Layout, Ul, FlexGrid, Li } from "./SideNav.elements";
 
 const SideNav = () => {
   return (
@@ -20,9 +13,7 @@ const SideNav = () => {
               <Link to="/">Home</Link>
             </Li>
             <Li>
-              <Link to="/CreateRecipe">
-                <MenuItem>Create Recipe</MenuItem>
-              </Link>
+              <Link to="/CreateRecipe">Create Recipe</Link>
             </Li>
           </Ul>
         </Layout>
@@ -31,7 +22,9 @@ const SideNav = () => {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/createRecipe">
-            <Create />
+            <FlexGrid>
+              <Create />
+            </FlexGrid>
           </Route>
           <Route path="/">
             <FlexGrid>

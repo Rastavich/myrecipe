@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import { createRecipe } from "../../services/RecipeService";
-import { ClapSpinner } from "react-spinners-kit";
-import {} from "./CreateRecipe.elements";
 import { useForm } from "react-hook-form";
 import ListIngredientsForm from "../Form/ListIngredientsForm";
 import ListStepsForm from "../Form/ListStepsForm";
 
 export default function CreateRecipe() {
-  const { register, handleSubmit, watch, reset, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
   const onRecipeSubmit = (data, e) => {
     // console.log(data);
@@ -62,7 +59,7 @@ export default function CreateRecipe() {
           ref={register({ maxLength: 1 })}
         />
 
-        <div class="row">
+        <div>
           <ListStepsForm register={register} />
           <ListIngredientsForm register={register} />
         </div>

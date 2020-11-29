@@ -39,6 +39,9 @@ export const Layout = styled.aside`
   -webkit-transition-duration: 0.5s;
   transition-duration: 0.5s;
   background: ${(props) => props.backgroundColor || "#E8E5DA"};
+  @media (max-width: 768px) {
+    width: 20px;
+  }
 `;
 
 export const Ul = styled.ul`
@@ -51,12 +54,14 @@ export const Ul = styled.ul`
 
 export const FlexGrid = styled.div`
   display: flex;
-  margin: 20px 20px 20px 20px;
+  margin: 20px 20px 20px 190px;
   padding: 15px;
   border: 1px solid #ddd;
   background: #fff;
   height: fit-content;
-  width: fit-content;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MenuItem = styled.p`
@@ -73,6 +78,6 @@ export const Li = styled.li`
   text-align: center;
   display: inline-flex;
   margin-top: 10px;
-  height: 1.5em;
+
   background-color: ${(props) => props.hoverColor || "#9EB7E5"};
 `;
