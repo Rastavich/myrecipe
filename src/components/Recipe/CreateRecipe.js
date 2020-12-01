@@ -8,7 +8,7 @@ export default function CreateRecipe() {
   const { register, handleSubmit, errors } = useForm();
 
   const onRecipeSubmit = (data, e) => {
-    // console.log(data);
+    console.log(data);
     // console.log(watch("example"));
     // console.log(register);
     createRecipe(data)

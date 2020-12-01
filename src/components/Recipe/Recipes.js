@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
   getAllRecipes,
   deleteRecipeByName,
-  // importRecipe,
+  importRecipe,
 } from "../../services/RecipeService";
 import { ClapSpinner } from "react-spinners-kit";
 import {
@@ -60,9 +60,9 @@ const Recipe = () => {
       });
   };
 
-  // const impRecipe = (url) => {
-  //   importRecipe("test");
-  // };
+  const impRecipe = (url) => {
+    importRecipe('https://www.allrecipes.com/recipe/275397/penang-pork-satay/');
+  };
 
   useEffect(() => {
     let isMounted = false;
@@ -127,13 +127,13 @@ const Recipe = () => {
               </Column>
             ))}
           </Row>
-          {/* <Btn
+          <Btn
             onClick={() => {
               impRecipe();
             }}
           >
             Import
-          </Btn> */}
+          </Btn>
           {showDetails && <RecipeDetails recipe={recipeDetails} />}
         </>
       )}

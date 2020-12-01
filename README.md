@@ -71,4 +71,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### HELPFUL SCRIPT FOR GETTING RECIPE INGREDIENTS ETC FROM MOST SITES
 
-curl https://www.allrecipes.com/recipe/275397/penang-pork-satay/ | grep -A 20 "recipeIngredient" | grep -B1005 "]"
+curl https://www.allrecipes.com/recipe/275397/penang-pork-satay/ | grep -A 20 "recipeIngredient" | grep -B100 "]"
