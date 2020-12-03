@@ -40,7 +40,7 @@ export async function deleteRecipeByName(name) {
 export async function importRecipe(url) {
   // const jsonld = require("jsonld");
   const cheerio = require("cheerio");
-  const recipes = [];
+  
 
   const response = await fetch(
     `https://thingproxy.freeboard.io/fetch/` + url
@@ -52,6 +52,12 @@ export async function importRecipe(url) {
   let title = $("meta[property='og:title']").attr("content");
   console.log(title);
 
+  let description = $("meta[name='description']").attr("content");
+  console.log(description);
+
+  let recipeImage = $("meta[property='og:image']").attr("content");
+  console.log(recipeImage)
+
   var ingredientsre = /"recipeIngredient": \[([^\]]+)\]/; 
   var ingredients = response.match(ingredientsre);
   const test = ingredients[0].replace(/\s+/g, ' ');
@@ -61,5 +67,19 @@ export async function importRecipe(url) {
   var instructionsre = /"recipeInstructions": \[([^\]]+)\]/; 
   var instructions = response.match(instructionsre);
   console.log(instructions[0])
+  var recipes = { recipe_name: title, recipe_intro: description, ingredients: [ingredientsre] };
+
+
+
+
+
+  // Build the array data to send to create recipe
+  // recipes.recipe.push({ recipe_name: title });
+  // recipes.recipe.push({ recipe_intro: description });
+  // recipes.push({ingredients: ingredients[1]})
+  // recipes.push({steps: instructions[1]})
+
+  // var recipeJson = JSON.stringify(recipes)
+  console.log(recipes);
 
 }
