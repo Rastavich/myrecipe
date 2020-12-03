@@ -22,19 +22,21 @@ const RecipeDetails = (recipe) => {
     <DetailsView>
       <ul>
         {steps.map((step) => (
-          <ListView key={step.stepNum}>
-            {step.stepNum}: {step.stepDesc}
+          <ListView>
+            {/* {steps} */}
           </ListView>
         ))}
       </ul>
       <ul>
+      <h4>Ingredients</h4>
         {ingredients.map((ingredient) => (
-          <ListView key={ingredient.name}>
+          <ListView key={ingredient}>
             <div>
               <span>
+                
                 <p>
-                  {ingredient.qty}&nbsp;
-                  {ingredient.name}
+                  {ingredient}&nbsp;
+                  
                 </p>
               </span>
             </div>

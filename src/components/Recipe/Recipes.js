@@ -61,7 +61,7 @@ const Recipe = () => {
   };
 
   const impRecipe = (url) => {
-    importRecipe('https://www.allrecipes.com/recipe/275397/penang-pork-satay/');
+    importRecipe('https://www.allrecipes.com/recipe/230857/easy-tuna-patties/');
   };
 
   useEffect(() => {
@@ -95,7 +95,7 @@ const Recipe = () => {
                 >
                   <CardImage
                     alt="example"
-                    src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                    src={recipe.recipe_image}
                   />
                   <CardContent>
                     <CardTitle inline="inline-flex">
