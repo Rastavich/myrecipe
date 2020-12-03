@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import {
   getAllRecipes,
   deleteRecipeByName,
-  importRecipe,
 } from "../../services/RecipeService";
+import { importRecipe } from "../../services/RecipeImportService"
 import { ClapSpinner } from "react-spinners-kit";
 import {
   Column,
