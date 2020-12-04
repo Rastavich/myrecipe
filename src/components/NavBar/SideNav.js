@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Recipe from "../Recipe/Recipes";
 import CreateRecipe from "../Recipe/CreateRecipe";
 import { Wrapper, Layout, Ul, FlexGrid, Li } from "./SideNav.elements";
+import ImportRecipe from "../Recipe/ImportRecipe";
 
 const SideNav = () => {
   return (
@@ -15,6 +16,9 @@ const SideNav = () => {
             <Li>
               <Link to="/CreateRecipe">Create Recipe</Link>
             </Li>
+            <Li>
+              <Link to="/import">Import Recipe</Link>
+            </Li>
           </Ul>
         </Layout>
 
@@ -24,6 +28,11 @@ const SideNav = () => {
           <Route path="/createRecipe">
             <FlexGrid>
               <Create />
+            </FlexGrid>
+          </Route>
+          <Route path="/import">
+            <FlexGrid>
+              <Import />
             </FlexGrid>
           </Route>
           <Route path="/">
@@ -43,6 +52,10 @@ function Recipes() {
 
 function Create() {
   return <CreateRecipe />;
+}
+
+function Import() {
+  return <ImportRecipe />;
 }
 
 export default SideNav;

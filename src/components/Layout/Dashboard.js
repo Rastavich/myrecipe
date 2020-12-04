@@ -1,7 +1,7 @@
-import Navigation from "../NavBar/SideNav";
+import SideNav from "../NavBar/SideNav";
 
 const Dashboard = () => {
-  return <Navigation />;
+  return <SideNav />;
 };
 
 export default Dashboard;

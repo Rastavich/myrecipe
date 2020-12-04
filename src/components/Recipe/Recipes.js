@@ -3,7 +3,7 @@ import {
   getAllRecipes,
   deleteRecipeByName,
 } from "../../services/RecipeService";
-import { importRecipe } from "../../services/RecipeImportService"
+
 import { ClapSpinner } from "react-spinners-kit";
 import {
   Column,
@@ -60,10 +60,6 @@ const Recipe = () => {
       });
   };
 
-  const impRecipe = (url) => {
-    importRecipe('https://www.allrecipes.com/recipe/230857/easy-tuna-patties/');
-  };
-
   useEffect(() => {
     let isMounted = false;
 
@@ -93,10 +89,7 @@ const Recipe = () => {
                     viewRecipe(recipe);
                   }}
                 >
-                  <CardImage
-                    alt="example"
-                    src={recipe.recipe_image}
-                  />
+                  <CardImage alt="example" src={recipe.recipe_image} />
                   <CardContent>
                     <CardTitle inline="inline-flex">
                       {recipe.recipe_name}
@@ -127,13 +120,7 @@ const Recipe = () => {
               </Column>
             ))}
           </Row>
-          <Btn
-            onClick={() => {
-              impRecipe();
-            }}
-          >
-            Import
-          </Btn>
+
           {showDetails && <RecipeDetails recipe={recipeDetails} />}
         </>
       )}
