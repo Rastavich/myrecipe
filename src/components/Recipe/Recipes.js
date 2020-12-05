@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {
   getAllRecipes,
   deleteRecipeByName,
-} from "../../services/RecipeService";
+} from "../../services/recipes/RecipeService";
 
 import { ClapSpinner } from "react-spinners-kit";
 import {
@@ -96,11 +96,15 @@ const Recipe = () => {
                     </CardTitle>
                     <CardDescription inline="">
                       <HiOutlineHashtag />
-                      {recipe.category_name}
+                      {recipe.category}
                     </CardDescription>
                     <CardDescription>
-                      Prep time: {recipe.prep_time}
+                      Prep time: {recipe.prep_time[1]} mins
                     </CardDescription>
+                    <CardDescription>
+                      Total time: {recipe.total_time[1]} mins
+                    </CardDescription>
+                    <CardDescription>Yield: {recipe.yield}</CardDescription>
                   </CardContent>
                   <RecipeButtons>
                     <Btn

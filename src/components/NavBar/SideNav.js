@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Recipe from "../Recipe/Recipes";
-import CreateRecipe from "../Recipe/CreateRecipe";
+import CreateRecipe from "../Recipe/CreateRecipe/CreateRecipe";
 import { Wrapper, Layout, Ul, FlexGrid, Li } from "./SideNav.elements";
-import ImportRecipe from "../Recipe/ImportRecipe";
+import ImportRecipe from "../Recipe/RecipeImport/ImportRecipe";
 
 const SideNav = () => {
   return (

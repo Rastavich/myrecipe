@@ -1,8 +1,8 @@
 import React from "react";
-import { createRecipe } from "../../services/RecipeService";
+import { createRecipe } from "../../../services/recipes/RecipeService";
 import { useForm } from "react-hook-form";
-import ListIngredientsForm from "../Form/ListIngredientsForm";
-import ListStepsForm from "../Form/ListStepsForm";
+import ListIngredientsForm from "../../Form/ListIngredientsForm";
+import ListStepsForm from "../../Form/ListStepsForm";
 
 export default function CreateRecipe() {
   const { register, handleSubmit, errors } = useForm();

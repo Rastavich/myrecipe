@@ -1,5 +1,3 @@
-import "./App.css";
-
 import Dashboard from "./components/Layout/Dashboard";
 import Header from "./components/Layout/Header";
 import styled, { ThemeProvider } from "styled-components";
