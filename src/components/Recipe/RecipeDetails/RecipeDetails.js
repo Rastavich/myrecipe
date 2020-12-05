@@ -41,7 +41,7 @@ const RecipeDetails = (recipe) => {
       <h4>Steps</h4>
       <ul>
         {steps.map((step) => (
-          <ListView key={step}>{steps}</ListView>
+          <ListView key={step}>{step}</ListView>
         ))}
       </ul>
       <h4>Nutrition</h4>

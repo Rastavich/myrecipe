@@ -4,6 +4,17 @@ const cheerio = require("cheerio");
 // TODO: refactor all of this, add error handling
 export async function importRecipe(url) {
   var importUrl = url;
+  var title = null;
+  var description = null;
+  var recipeIngredients = null;
+  var recipeSteps = null;
+  var recipeImage = null;
+  var prepTime = null;
+  var cookTime = null;
+  var totalTime = null;
+  var recipeYield = null;
+  var recipeCategory = null;
+  var nutrition = null;
 
   // Use CORS blocker when running fetch in development
   if (process.env.NODE_ENV === "development") {
@@ -14,58 +25,78 @@ export async function importRecipe(url) {
 
   const $ = cheerio.load(response);
 
-  let title = $("meta[property='og:title']").attr("content");
-  let description = $("meta[name='description']").attr("content");
-  let recipeImage = $("meta[property='og:image']").attr("content");
+  title = $("meta[property='og:title']").attr("content");
+  description = $("meta[name='description']").attr("content");
+  recipeImage = $("meta[property='og:image']").attr("content");
 
   var prepResponse = response.match(/(?<="prepTime": )[^,]+"/);
-  const parsedPrepResponse = prepResponse[0].replace(/"/g, "");
-  var prepTimeUnformatted = parsedPrepResponse;
-  let prepTime = convertTimeFormat(prepTimeUnformatted);
+  if (prepResponse) {
+    const parsedPrepResponse = prepResponse[0].replace(/"/g, "");
+    var prepTimeUnformatted = parsedPrepResponse;
+    prepTime = convertTimeFormat(prepTimeUnformatted);
+  }
 
   var cookResponse = response.match(/(?<="cookTime": )[^,]+"/);
-  const parsedCookResponse = cookResponse[0].replace(/"/g, "");
-  var cookTimeUnformatted = parsedCookResponse;
-  var cookTime = convertTimeFormat(cookTimeUnformatted);
+  if (cookResponse) {
+    const parsedCookResponse = cookResponse[0].replace(/"/g, "");
+    var cookTimeUnformatted = parsedCookResponse;
+    cookTime = convertTimeFormat(cookTimeUnformatted);
+  }
 
   var totalResponse = response.match(/(?<="totalTime": )[^,]+"/);
-  const parsedTotalResponse = totalResponse[0].replace(/"/g, "");
-  var totalTimeUnformatted = parsedTotalResponse;
-  var totalTime = convertTimeFormat(totalTimeUnformatted);
+  if (totalResponse) {
+    const parsedTotalResponse = totalResponse[0].replace(/"/g, "");
+    var totalTimeUnformatted = parsedTotalResponse;
+    totalTime = convertTimeFormat(totalTimeUnformatted);
+  }
 
   var recipeYieldResponse = response.match(/(?<="recipeYield": )[^,]+"/);
-  const yieldResponse = recipeYieldResponse[0].replace(/"/gm, "");
-  var recipeYield = yieldResponse;
+  if (recipeYieldResponse) {
+    const yieldResponse = recipeYieldResponse[0].replace(/"/gm, "");
+    recipeYield = yieldResponse;
+  }
 
   let recipeCategoryResponse = response.match(
     /(?<="recipeCategory": \[)[^\]]+"/
   );
-  let categoryResponse = recipeCategoryResponse[0].replace(/"/gm, "");
-  let recipeCategoryRegex = removeWhitespace(categoryResponse);
-  var recipeCategory = recipeCategoryRegex.split(",");
+  if (recipeCategoryResponse) {
+    let categoryResponse = recipeCategoryResponse[0].replace(/"/gm, "");
+    let recipeCategoryRegex = removeWhitespace(categoryResponse);
+    recipeCategory = recipeCategoryRegex.split(",");
+  }
 
   var nutritionValues = response.match(/(?<="NutritionInformation",\n)[^}]+/);
-  const nutritionParsed = nutritionValues[0].replace(/\s+/g, " ");
-  const parsedNutritionValues = nutritionParsed.replace(/"/gm, "");
-  var nutrition = parsedNutritionValues.split(",");
-
+  if (nutritionValues) {
+    const nutritionParsed = nutritionValues[0].replace(/\s+/g, " ");
+    const parsedNutritionValues = nutritionParsed.replace(/"/gm, "");
+    nutrition = parsedNutritionValues.split(",");
+  }
   // Parsing the recipe ingredients from html
   var ingredientsMatch = response.match(/(?<="recipeIngredient": \[)[^\]]+"/);
-  const ingredientsParse = ingredientsMatch[0].replace(/\s+/g, " ");
-  const parsedIngredientsRegex = ingredientsParse.replace(/"/gm, "");
-  var recipeIngredients = parsedIngredientsRegex.split(",");
+  if (ingredientsMatch) {
+    const ingredientsParse = ingredientsMatch[0].replace(/\s+/g, " ");
+    const removeErrandCommas = ingredientsParse.replace(
+      /(?=, [a-zA-Z])./gm,
+      ""
+    );
+    const parsedIngredientsRegex = removeErrandCommas.replace(/"/gm, "");
+    recipeIngredients = parsedIngredientsRegex.split(",");
+  }
 
   // Parsing the recipe steps from html
   let stepsMatch = response.match(/(?<="recipeInstructions": \[)[^\]]+"/);
-  let stepsParse = stepsMatch[0].replace(/\s+/g, " ");
-  let stepsParseSecond = stepsParse.replace(
-    / { "@type": "HowToStep", "text":/g,
-    ""
-  );
-  let stepsParseRegex = stepsParseSecond.replace(/"/gm, "");
-  let recipeSteps = stepsParseRegex.split('",');
+  if (stepsMatch) {
+    let stepsParse = stepsMatch[0].replace(/\s+/g, " ");
 
-  console.log(recipeSteps);
+    let stepsParseSecond = stepsParse.replace(
+      / { "@type": "HowToStep", "text":/g,
+      ""
+    );
+    let test2 = stepsParseSecond.replace(".\n", "");
+    console.log(test2);
+    let stepsParseRegex = stepsParseSecond.replace(/"/gm, "");
+    recipeSteps = stepsParseRegex.split('",');
+  }
 
   // Build the recipe data
   var recipes = {
