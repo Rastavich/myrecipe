@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { importRecipe } from "../../services/RecipeImportService";
+import RecipeImportPreview from '../Recipe/RecipeImportPreview';
 
 const ImportRecipe = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -21,6 +22,7 @@ const ImportRecipe = () => {
   };
 
   return (
+    <>
     <div>
       <form onSubmit={handleSubmit(onRecipeSubmit)}>
         <input
@@ -32,6 +34,12 @@ const ImportRecipe = () => {
         <input type="submit" />
       </form>
     </div>
+    
+    
+    <div>
+      <RecipeImportPreview />
+    </div>
+    </>
   );
 };
 

@@ -20,15 +20,8 @@ const RecipeDetails = (recipe) => {
 
   return (
     <DetailsView>
-      <ul>
-        {steps.map((step) => (
-          <ListView>
-            {/* {steps} */}
-          </ListView>
-        ))}
-      </ul>
-      <ul>
       <h4>Ingredients</h4>
+      <ul>
         {ingredients.map((ingredient) => (
           <ListView key={ingredient}>
             <div>
@@ -40,6 +33,14 @@ const RecipeDetails = (recipe) => {
                 </p>
               </span>
             </div>
+          </ListView>
+        ))}
+      </ul>
+      <h4>Steps</h4>
+      <ul>
+        {steps.map((step) => (
+          <ListView>
+            {steps}
           </ListView>
         ))}
       </ul>
