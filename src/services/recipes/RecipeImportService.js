@@ -16,7 +16,7 @@ export async function importRecipe(url) {
   var recipeCategory = null;
   var nutrition = null;
 
-  // Use CORS blocker when running fetch in development
+  // Use CORS blocker when running fetch in development test
   importUrl = `https://cors-anywhere.herokuapp.com/` + url;
 
   const response = await fetch(importUrl, {
