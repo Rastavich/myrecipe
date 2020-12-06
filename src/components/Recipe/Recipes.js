@@ -72,6 +72,8 @@ const Recipe = () => {
     };
   }, []);
 
+  function prepTime() {}
+
   return (
     <div className="App">
       {loading ? (
@@ -94,17 +96,25 @@ const Recipe = () => {
                     <CardTitle inline="inline-flex">
                       {recipe.recipe_name}
                     </CardTitle>
-                    <CardDescription inline="">
-                      <HiOutlineHashtag />
-                      {recipe.category}
-                    </CardDescription>
-                    <CardDescription>
-                      Prep time: {recipe.prep_time[1]} mins
-                    </CardDescription>
-                    <CardDescription>
-                      Total time: {recipe.total_time[1]} mins
-                    </CardDescription>
-                    <CardDescription>Yield: {recipe.yield}</CardDescription>
+                    {recipe.category != null && (
+                      <CardDescription>
+                        <HiOutlineHashtag />
+                        {recipe.category}
+                      </CardDescription>
+                    )}
+                    {recipe.prep_time != null && (
+                      <CardDescription>
+                        Prep time: {recipe.prep_time[1]} mins
+                      </CardDescription>
+                    )}
+                    {recipe.total_time != null && (
+                      <CardDescription>
+                        Total time: {recipe.total_time[1]} mins
+                      </CardDescription>
+                    )}
+                    {recipe.yield && (
+                      <CardDescription>Yield: {recipe.yield}</CardDescription>
+                    )}
                   </CardContent>
                   <RecipeButtons>
                     <Btn

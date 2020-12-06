@@ -21,7 +21,11 @@ export async function importRecipe(url) {
     importUrl = `https://thingproxy.freeboard.io/fetch/` + url;
   }
 
-  const response = await fetch(importUrl).then((x) => x.text());
+  const response = await fetch(importUrl, {
+    headers: {
+      method: "GET",
+    },
+  }).then((x) => x.text());
 
   const $ = cheerio.load(response);
 
