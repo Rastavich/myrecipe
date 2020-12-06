@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { importRecipe } from "../../../services/recipes/RecipeImportService";
 import RecipeImportPreview from "./RecipeImportPreview";
-import "../../../assets/styles/importForms.scss";
+// import "../../../assets/styles/importForms.scss";
 
 const ImportRecipe = () => {
   const { register, handleSubmit, errors } = useForm();

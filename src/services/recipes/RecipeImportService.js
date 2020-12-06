@@ -87,15 +87,12 @@ export async function importRecipe(url) {
   let stepsMatch = response.match(/(?<="recipeInstructions": \[)[^\]]+"/);
   if (stepsMatch) {
     let stepsParse = stepsMatch[0].replace(/\s+/g, " ");
-
     let stepsParseSecond = stepsParse.replace(
       / { "@type": "HowToStep", "text":/g,
       ""
     );
-    let test2 = stepsParseSecond.replace(".\n", "");
-    console.log(test2);
-    let stepsParseRegex = stepsParseSecond.replace(/"/gm, "");
-    recipeSteps = stepsParseRegex.split('",');
+    let stepsParseThird = stepsParseSecond.replace(/(?=\\)[^\/,]*/gm, "");
+    recipeSteps = stepsParseThird.split(', "');
   }
 
   // Build the recipe data
