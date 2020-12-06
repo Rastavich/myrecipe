@@ -17,9 +17,7 @@ export async function importRecipe(url) {
   var nutrition = null;
 
   // Use CORS blocker when running fetch in development
-  if (process.env.NODE_ENV === "development") {
-    importUrl = `https://thingproxy.freeboard.io/fetch/` + url;
-  }
+  importUrl = `https://thingproxy.freeboard.io/fetch/` + url;
 
   const response = await fetch(importUrl, {
     headers: {
