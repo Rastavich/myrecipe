@@ -23,7 +23,7 @@ const ListStepsForm = ({ register }) => {
 
   return (
     <div>
-      <h1>Add Steps</h1>
+      <h3>Add Steps</h3>
 
       {indexes.map((index) => {
         const fieldName = `steps[${index}]`;
@@ -31,19 +31,7 @@ const ListStepsForm = ({ register }) => {
           <fieldset name={fieldName} key={fieldName}>
             <label>
               Steps Description:
-              <input
-                type="number"
-                name={`${fieldName}.stepNum`}
-                ref={register}
-                style={{ display: "none" }}
-                value={index + 1}
-                readOnly
-              />
-              <input
-                type="text"
-                name={`${fieldName}.stepDesc`}
-                ref={register}
-              />
+              <input type="text" name={`${fieldName}.steps`} ref={register} />
             </label>
             <button type="button" onClick={removeField(index)}>
               Remove

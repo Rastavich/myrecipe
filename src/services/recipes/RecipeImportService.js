@@ -93,7 +93,7 @@ export async function importRecipe(url) {
       / { "@type": "HowToStep", "text":/g,
       ""
     );
-    let stepsParseThird = stepsParseSecond.replace(/(?=\\)[^\/,]*/gm, "");
+    let stepsParseThird = stepsParseSecond.replace(/(?=\\)[^/,]*/gm, "");
     recipeSteps = stepsParseThird.split(', "');
   }
 

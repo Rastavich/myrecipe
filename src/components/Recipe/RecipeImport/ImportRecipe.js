@@ -5,16 +5,17 @@ import RecipeImportPreview from "./RecipeImportPreview";
 // import "../../../assets/styles/importForms.scss";
 
 const ImportRecipe = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onRecipeSubmit = (data, e) => {
     let url = data.url;
 
     importRecipe(url)
       .then((response) => {
-        // console.log(response);
-        alert("Recipe Created");
-        e.target.reset();
+        if (response.status === 200) {
+          alert("Recipe Created");
+          e.target.reset();
+        }
       })
       .catch((error) => {
         console.log(error);

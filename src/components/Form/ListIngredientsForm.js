@@ -23,7 +23,7 @@ const ListIngredientsForm = ({ register }) => {
 
   return (
     <div>
-      <h1>Add Ingredients</h1>
+      <h3>Add Ingredients</h3>
 
       {indexes.map((index) => {
         const fieldName = `ingredients[${index}]`;
@@ -31,9 +31,11 @@ const ListIngredientsForm = ({ register }) => {
           <fieldset name={fieldName} key={fieldName}>
             <label>
               Ingredients Description:
-              <input type="text" name={`${fieldName}.name`} ref={register} />
-              Ingredients Qty:
-              <input type="text" name={`${fieldName}.qty`} ref={register} />
+              <input
+                type="text"
+                name={`${fieldName}.ingredients`}
+                ref={register}
+              />
             </label>
             <button type="button" onClick={removeField(index)}>
               Remove

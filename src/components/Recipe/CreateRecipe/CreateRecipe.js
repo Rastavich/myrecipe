@@ -33,24 +33,32 @@ export default function CreateRecipe() {
         />
         {errors.recipe_name && <span>This field is required</span>}
         <input
-          name="category_name"
-          placeholder="Category Name"
-          ref={register({ maxLength: 20 })}
+          name="category"
+          placeholder="Category"
+          ref={register({ maxLength: 50 })}
         />
         <input
           name="recipe_intro"
           placeholder="Recipe Intro"
-          ref={register({ maxLength: 50 })}
+          ref={register({ maxLength: 100 })}
         />
         <input
           name="prep_time"
           placeholder="Preparation Time"
           ref={register({ maxLength: 10 })}
+          type="number"
+        />
+        <input
+          name="cook_time"
+          placeholder="Cook Time"
+          ref={register({ maxLength: 10 })}
+          type="number"
         />
         <input
           name="total_time"
           placeholder="Total Time"
           ref={register({ required: true, maxLength: 10 })}
+          type="number"
         />
         <input
           name="difficulty"
@@ -58,10 +66,39 @@ export default function CreateRecipe() {
           type="number"
           ref={register({ maxLength: 1 })}
         />
-
+        <input
+          name="recipe_image"
+          placeholder="Recipe Image URL"
+          type="text"
+          ref={register({ maxLength: 100 })}
+        />
+        <input
+          name="yield"
+          placeholder="Yield (number of servings)"
+          type="text"
+          ref={register({ maxLength: 20 })}
+        />
+        <input
+          name="difficulty"
+          placeholder="Difficulty - 10 being hardest"
+          type="number"
+          ref={register({ maxLength: 2 })}
+        />
+        <input
+          name="nutrition"
+          placeholder="Nutritional Information"
+          type="text"
+          ref={register({ maxLength: 500 })}
+        />
+        <input
+          name="recipe_url"
+          placeholder="URL of recipe (if applicable)"
+          type="text"
+          ref={register({ maxLength: 100 })}
+        />
         <div>
-          <ListStepsForm register={register} />
           <ListIngredientsForm register={register} />
+          <ListStepsForm register={register} />
         </div>
         <input type="submit" />
       </form>

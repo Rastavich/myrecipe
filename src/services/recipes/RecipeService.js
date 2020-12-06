@@ -37,3 +37,7 @@ export async function deleteRecipeByName(name) {
   return await response.json();
 }
 
+export async function updateRecipeByName(name) {
+  const response = await fetch(`/api/recipes/update?name=` + name);
+  return await response.json();
+}
