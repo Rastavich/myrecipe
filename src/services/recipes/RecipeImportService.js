@@ -114,9 +114,8 @@ export async function importRecipe(url) {
     difficulty: null,
   };
 
-  createRecipe(recipes);
-
-  console.log(recipes);
+  // createRecipe(recipes);
+  return recipes;
 }
 
 const convertTimeFormat = (time) => {

@@ -5,23 +5,14 @@ const RecipeDetails = (recipe) => {
   const details = recipe.recipe;
 
   if (details == null) {
-    return "This recipe has information...edit this recipe to add them";
+    return "This recipe has no information...edit this recipe to add them";
   }
 
   const { steps } = details;
-  // if (steps == null) {
-  //   return "This recipe has no steps...edit this recipe to add them";
-  // }
 
   const { ingredients } = details;
-  // if (ingredients == null) {
-  //   return "This recipe has no ingredients...edit this recipe to add them";
-  // }
 
   const { nutrition } = details;
-  // if (nutrition == null) {
-  //   return "This recipe has no nutritional information...edit this recipe to add them";
-  // }
 
   return (
     <DetailsView>

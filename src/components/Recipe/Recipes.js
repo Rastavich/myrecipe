@@ -3,7 +3,6 @@ import {
   getAllRecipes,
   deleteRecipeByName,
 } from "../../services/recipes/RecipeService";
-
 import { ClapSpinner } from "react-spinners-kit";
 import {
   Column,
@@ -16,7 +15,7 @@ import {
   RecipeButtons,
 } from "./Recipes.elements";
 import { HiOutlineHashtag } from "react-icons/hi";
-import { Btn } from "../Generics/Button.elements";
+import { Button } from "../Generics/Button";
 import RecipeDetails from "./RecipeDetails/RecipeDetails";
 
 const Recipe = () => {
@@ -93,9 +92,11 @@ const Recipe = () => {
                 >
                   <CardImage alt="example" src={recipe.recipe_image} />
                   <CardContent>
-                    <CardTitle inline="inline-flex">
-                      {recipe.recipe_name}
-                    </CardTitle>
+                    {recipe.recipe_name != null && (
+                      <CardTitle inline="inline-flex">
+                        {recipe.recipe_name}
+                      </CardTitle>
+                    )}
                     {recipe.category != null && (
                       <CardDescription>
                         <HiOutlineHashtag />
@@ -117,7 +118,7 @@ const Recipe = () => {
                     )}
                   </CardContent>
                   <RecipeButtons>
-                    <Btn
+                    <Button
                       onClick={() => {
                         if (
                           window.confirm(
@@ -128,7 +129,7 @@ const Recipe = () => {
                       }}
                     >
                       Delete
-                    </Btn>
+                    </Button>
                   </RecipeButtons>
                 </CardWrapper>
               </Column>

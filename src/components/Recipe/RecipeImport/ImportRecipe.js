@@ -2,20 +2,25 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { importRecipe } from "../../../services/recipes/RecipeImportService";
 import RecipeImportPreview from "./RecipeImportPreview";
+import { Button } from "../../Generics/Button";
 // import "../../../assets/styles/importForms.scss";
 
 const ImportRecipe = () => {
   const { register, handleSubmit } = useForm();
+  var recipeData = null;
+  var showPreview = false;
 
   const onRecipeSubmit = (data, e) => {
     let url = data.url;
+    let showPreview = true;
+
+    // const getRecipe().then((response) => {});
 
     importRecipe(url)
       .then((response) => {
-        if (response.status === 200) {
-          alert("Recipe Created");
-          e.target.reset();
-        }
+        // if (response.status === 200) {
+        let recipeData = response;
+        // }
       })
       .catch((error) => {
         console.log(error);
@@ -27,7 +32,6 @@ const ImportRecipe = () => {
     <>
       <div>
         <form className="form-group" onSubmit={handleSubmit(onRecipeSubmit)}>
-          <span>https://</span>
           <input
             className="form-field"
             name="url"
@@ -35,14 +39,16 @@ const ImportRecipe = () => {
             type="text"
             ref={register({ required: true })}
           />
-          <button id="button" type="submit">
+          <Button id="button" type="submit">
             Import
-          </button>
+          </Button>
         </form>
       </div>
 
       <div>
-        <RecipeImportPreview />
+        {showPreview == true && (
+          <RecipeImportPreview previewData={recipeData} />
+        )}
       </div>
     </>
   );
