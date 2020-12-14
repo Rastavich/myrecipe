@@ -2,7 +2,7 @@ import React from "react";
 
 const RecipeImportPreview = (props) => {
   const recipe = { ...props };
-  console.log(recipe);
+  // console.log(recipe);
   return (
     <>
       <div>
