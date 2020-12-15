@@ -27,64 +27,52 @@ export async function importRecipe(url) {
   }).then((x) => x.text());
 
   const $ = cheerio.load(response);
+  console.log($("script[type='application/ld+json']")[0]);
+
+  var formatedHtml = response;
   // console.log(response);
 
   title = $("meta[property='og:title']").attr("content");
   description = $("meta[name='description']").attr("content");
   recipeImage = $("meta[property='og:image']").attr("content");
 
-  var prepResponse = response.match(/(?<="prepTime": )[^,]+"/);
-  if (!prepResponse) {
-    prepResponse = response.match(/(?<="prepTime":)[^,]+"/);
-  }
+  var prepResponse = formatedHtml.match(/(?<="prepTime":)[^,]+"/);
   if (prepResponse) {
     const parsedPrepResponse = prepResponse[0].replace(/"/g, "");
     var prepTimeUnformatted = parsedPrepResponse;
     prepTime = convertTimeFormat(prepTimeUnformatted);
   }
 
-  var cookResponse = response.match(/(?<="cookTime": )[^,]+"/);
-  if (!cookResponse) {
-    cookResponse = response.match(/(?<="cookTime":)[^,]+"/);
-  }
+  var cookResponse = formatedHtml.match(/(?<="cookTime":)[^,]+"/);
   if (cookResponse) {
     const parsedCookResponse = cookResponse[0].replace(/"/g, "");
     var cookTimeUnformatted = parsedCookResponse;
     cookTime = convertTimeFormat(cookTimeUnformatted);
   }
 
-  var totalResponse = response.match(/(?<="totalTime": )[^,]+"/);
-  if (!totalResponse) {
-    totalResponse = response.match(/(?<="totalTime":)[^,]+"/);
-  }
+  var totalResponse = formatedHtml.match(/(?<="totalTime":)[^,]+"/);
   if (totalResponse) {
     const parsedTotalResponse = totalResponse[0].replace(/"/g, "");
     var totalTimeUnformatted = parsedTotalResponse;
     totalTime = convertTimeFormat(totalTimeUnformatted);
   }
 
-  var recipeYieldResponse = response.match(/(?<="recipeYield": )[^,]+"/);
-  if (!recipeYieldResponse) {
-    recipeYieldResponse = response.match(/(?<="recipeYield":\[)[^,]+"/);
-  }
+  var recipeYieldResponse = formatedHtml.match(/(?<="recipeYield":)[^,]+"/);
   if (recipeYieldResponse) {
     const yieldResponse = recipeYieldResponse[0].replace(/"/gm, "");
     recipeYield = yieldResponse;
   }
 
-  var recipeCategoryResponse = response.match(
-    /(?<="recipeCategory": \[)[^\]]+"/
-  );
-  if (!recipeCategoryResponse) {
-    recipeCategoryResponse = response.match(/(?<="recipeCategory":\[)[^\]]+"/);
-  }
+  var recipeCategoryResponse = formatedHtml.match(/(?<=recipeCategory)[^\]]+"/);
   if (recipeCategoryResponse) {
     let categoryResponse = recipeCategoryResponse[0].replace(/"/gm, "");
     let recipeCategoryRegex = removeWhitespace(categoryResponse);
     recipeCategory = recipeCategoryRegex.split(",");
   }
 
-  var nutritionValues = response.match(/(?<="NutritionInformation",\n)[^}]+/);
+  var nutritionValues = formatedHtml.match(
+    /(?<="NutritionInformation",\n)[^}]+/
+  );
   if (nutritionValues) {
     const nutritionParsed = nutritionValues[0].replace(/\s+/g, " ");
     const parsedNutritionValues = nutritionParsed.replace(/"/gm, "");
@@ -108,12 +96,17 @@ export async function importRecipe(url) {
   // Parsing the recipe steps from html
   var stepsMatch = response.match(/(?<="recipeInstructions": \[)[^\]]+"/);
   if (!stepsMatch) {
-    stepsMatch = /(?<="recipeInstructions":\[)[^\]]+"/;
-  }
-  if (stepsMatch) {
+    stepsMatch = response.match(/(?<="recipeInstructions":\[)[^\]]+"/);
+    var stepsParse = stepsMatch[0].replace(/\s+/g, " ");
+
+    var stepsParseSecond = stepsParse.match(
+      /(?<={"@type":"HowToStep","text":)[^:]*/gm
+    );
+    recipeSteps = stepsParseSecond;
+  } else {
     let stepsParse = stepsMatch[0].replace(/\s+/g, " ");
     let stepsParseSecond = stepsParse.replace(
-      / { "@type": "HowToStep", "text":/g,
+      /{"@type":"HowToStep","text":/g,
       ""
     );
     let stepsParseThird = stepsParseSecond.replace(/(?=\\)[^/,]*/gm, "");
@@ -137,19 +130,33 @@ export async function importRecipe(url) {
     difficulty: null,
   };
 
-  // createRecipe(recipes);
-  return recipes;
+  try {
+    // createRecipe(recipes);
+    return recipes;
+
+    // console.log(recipes);
+  } catch (e) {
+    console.log("Error");
+  }
 }
 
 const convertTimeFormat = (time) => {
   let formatMinute = time.match(/(?<=T)[^H]/g);
   let formatHour = time.match(/(?<=H)[^H]./g);
 
-  console.log(formatMinute, formatHour);
+  if (formatMinute && formatHour) {
+    return [formatMinute, formatHour];
+  } else if (!formatMinute && formatHour) {
+    return formatHour;
+  } else if (formatMinute && !formatHour) {
+    return formatMinute;
+  }
 
-  return [formatMinute, formatHour];
+  return null;
 };
 
 const removeWhitespace = (data) => {
-  return data.replace(/\s\n/);
+  if (data) {
+    return data.replace(/\s/gm, "");
+  }
 };
