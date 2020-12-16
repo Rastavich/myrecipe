@@ -1,20 +1,21 @@
 import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { importRecipe } from "../../../services/recipes/RecipeImportService";
-import RecipeImportPreview from "./RecipeImportPreview";
-// import "../../../assets/styles/importForms.scss";
+import { Button } from "../../Generics/Button";
+import CreateRecipe from "../CreateRecipe/CreateRecipe";
 
 const ImportRecipe = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
+  const [recipeData, setRecipeData] = useState(null);
 
   const onRecipeSubmit = (data, e) => {
     let url = data.url;
 
     importRecipe(url)
       .then((response) => {
-        // console.log(response);
-        alert("Recipe Created");
-        e.target.reset();
+        setRecipeData(response);
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +27,6 @@ const ImportRecipe = () => {
     <>
       <div>
         <form className="form-group" onSubmit={handleSubmit(onRecipeSubmit)}>
-          <span>https://</span>
           <input
             className="form-field"
             name="url"
@@ -34,15 +34,12 @@ const ImportRecipe = () => {
             type="text"
             ref={register({ required: true })}
           />
-          <button id="button" type="submit">
-            Import
-          </button>
+          <Button type="submit">Import</Button>
+          <Button>Manual Create</Button>
         </form>
       </div>
 
-      <div>
-        <RecipeImportPreview />
-      </div>
+      {recipeData != null && <CreateRecipe recipe={recipeData} />}
     </>
   );
 };

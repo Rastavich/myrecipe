@@ -37,15 +37,13 @@ export const CardTitle = styled.h1`
 `;
 
 export const CardDescription = styled.p`
-  font-size: 13px;
+  font-size: 12px;
   display: ${(props) => props.inline || ""};
   padding-left: 1em;
 `;
 
 export const Column = styled.div`
-  display: inline-flex;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
+  display: inline-grid;
   width: fit-content;
   border-radius: 5px;
   background: ${(props) => props.backgroundColor || "#E8E5DA"};
@@ -62,6 +60,7 @@ export const Column = styled.div`
 export const CardImage = styled.img`
   width: inherit;
   border-radius: 5px 5px 0 0;
+  max-height: 10em;
 `;
 
 export const Row = styled.div``;
