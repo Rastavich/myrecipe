@@ -13,7 +13,7 @@ const RecipeDetails = (recipe) => {
   const { ingredients } = details;
 
   const { nutrition } = details;
-
+  console.log(nutrition);
   return (
     <DetailsView>
       <h5>{details.recipe_intro}</h5>

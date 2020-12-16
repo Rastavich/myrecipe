@@ -6,16 +6,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Layout = styled.aside`
-  position: sticky;
   display: block;
   opacity: 1;
   top: 0;
-  -webkit-box-shadow: 0 0 1px rgba(40, 51, 65, 0.1),
-    0 1px 2px rgba(40, 51, 65, 0.1), 0 1px 3px rgba(40, 51, 65, 0.1);
-  box-shadow: 0 0 1px rgba(40, 51, 65, 0.1), 0 1px 2px rgba(40, 51, 65, 0.1),
-    0 1px 3px rgba(40, 51, 65, 0.1);
-  -webkit-transition-property: none;
-  transition-property: none;
   width: 100px;
   position: fixed;
   right: 0;
@@ -23,11 +16,7 @@ export const Layout = styled.aside`
   left: 0;
   min-height: 100vh;
   --bg-opacity: 1;
-  background-color: #fff;
   background-color: rgba(255, 255, 255, var(--bg-opacity));
-  padding: 2rem;
-  -webkit-box-shadow: 0 3px 12px rgba(40, 51, 65, 0.1),
-    0 0 1px rgba(40, 51, 65, 0.2);
   box-shadow: 0 3px 12px rgba(40, 51, 65, 0.1), 0 0 1px rgba(40, 51, 65, 0.2);
   font-weight: 100;
   z-index: 20;
@@ -40,7 +29,7 @@ export const Layout = styled.aside`
   transition-duration: 0.5s;
   background: ${(props) => props.backgroundColor || "#E8E5DA"};
   @media (max-width: 768px) {
-    width: 20px;
+    width: 5em;
   }
 `;
 
@@ -53,15 +42,16 @@ export const Ul = styled.ul`
 `;
 
 export const FlexGrid = styled.div`
-  display: flex;
-  margin: 20px 20px 20px 190px;
+  display: inline-grid;
+  margin: 2em 2em 2em 8em;
+  @media (max-width: 768px) {
+    margin: 1em 2em 1em 6em;
+  }
   padding: 15px;
   border: 1px solid #ddd;
   background: #fff;
   height: fit-content;
   width: 100%;
-  justify-content: center;
-  align-items: center;
 `;
 
 export const MenuItem = styled.p`
@@ -76,8 +66,6 @@ export const MenuItem = styled.p`
 
 export const Li = styled.li`
   text-align: center;
-  display: inline-flex;
-  margin-top: 10px;
-
+  padding: 1em;
   background-color: ${(props) => props.hoverColor || "#9EB7E5"};
 `;

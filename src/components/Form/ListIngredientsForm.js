@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Generics/Button";
 
 const ListIngredientsForm = ({ register }) => {
   const [indexes, setIndexes] = React.useState([]);
@@ -37,19 +38,19 @@ const ListIngredientsForm = ({ register }) => {
                 ref={register}
               />
             </label>
-            <button type="button" onClick={removeField(index)}>
+            <Button type="button" onClick={removeField(index)}>
               Remove
-            </button>
+            </Button>
           </fieldset>
         );
       })}
 
-      <button type="button" onClick={addField}>
+      <Button type="button" onClick={addField}>
         Add Ingredients
-      </button>
-      <button type="button" onClick={clearField}>
+      </Button>
+      <Button type="button" onClick={clearField}>
         Clear Ingredients
-      </button>
+      </Button>
     </div>
   );
 };

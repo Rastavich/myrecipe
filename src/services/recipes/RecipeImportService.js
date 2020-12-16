@@ -27,7 +27,6 @@ export async function importRecipe(url) {
   }).then((x) => x.text());
 
   const $ = cheerio.load(response);
-  console.log($("script[type='application/ld+json']")[0]);
 
   var formatedHtml = response;
   // console.log(response);
